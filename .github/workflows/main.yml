@@ -19,17 +19,14 @@ jobs:
         with:
           dotnet-version: '8.0.101'
 
-      - name: Build and test
-        run: |
-          dotnet build --configuration Release
-          dotnet test
+      - name: run test
+        run: dotnet test
 
       - name: Publish
-        run: |
-          dotnet publish -c Release -r win10-x64 --self-contained src/Marion.Dalifard.FeatureMatching.Console/Marion.Dalifard.FeatureMatching.Console.csproj
+        run: dotnet publish ./src/Marion.Dalifard.FeatureMatching.Console/Marion.Dalifard.FeatureMatching.Console.csproj --self-contained true --output ./win-x64/featurematching.exe -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
 
-      - name: Upload artifact
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: published-app
-          path: ./bin/Release/netcoreapp3.1/win10-x64/publish
+          name: Publis FaceDetection Console
+          path: ./win-x64/featurematching.exe
