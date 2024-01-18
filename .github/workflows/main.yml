@@ -24,7 +24,7 @@ jobs:
           dotnet test
 
       - name: Publish
-        run:  dotnet publish -c Release -r win10-x64 --self-contained  ./src/Marion.Dalifard.FeatureMatching.Console/Marion.Dalifard.FeatureMatching.Console.csproj -c Release -r win-x64 --self-contained true -o ./publish --no-restore /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
+        run: dotnet publish ./src/Marion.Dalifard.FeatureMatching.Console/Marion.Dalifard.FeatureMatching.Console.csproj -c Release -r win-x64 --self-contained true -o ./publish --no-restore /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
